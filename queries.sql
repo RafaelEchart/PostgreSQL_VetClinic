@@ -70,3 +70,41 @@ UPDATE animals
 SET weight_kg = weight_kg * -1
 WHERE weight_kg < 0;
 COMMIT;
+
+
+-- JOINS
+
+-- What animals belong to Melody Pond?
+SELECT animals.name, owners.full_name
+FROM owners
+INNER JOIN animals ON owners.id = owner_id WHERE owners.id = 4;
+
+-- List of all animals that are pokemon (their type is Pokemon)
+SELECT animals.name
+FROM species
+INNER JOIN animals ON species.id = species_id WHERE species.name = 'Pokemon';
+
+-- List all owners and their animals, remember to include those that don't own any animal.
+SELECT owners.full_name, animals.name
+FROM owners
+FULL JOIN animals ON owners.id = owner_id;
+
+-- How many animals are there per species?
+SELECT species.name, COUNT(species.name)
+FROM species
+FULL JOIN animals ON species.id = species_id GROUP BY species.name;
+
+-- List all Digimon owned by Jennifer Orwell.
+SELECT animals.name, species.name
+FROM species
+INNER JOIN animals ON species.id = species_id WHERE species.name = 'Digimon' AND animals.owner_id = 2;
+
+-- List all animals owned by Dean Winchester that haven't tried to escape.
+SELECT animals.name, owners.full_name
+FROM animals
+INNER JOIN owners ON animals.owner_id = owners.id WHERE animals.escape_attempt = 0 AND owners.full_name = 'Deam Winchester';
+
+-- Who owns the most animals?
+SELECT owners.full_name AS owners_name, COUNT(owner_id) AS number_animals_owned
+FROM animals
+INNER JOIN owners ON owner_id = owners.id GROUP BY owners.full_name;

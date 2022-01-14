@@ -1,3 +1,4 @@
+--Populate Animals Table
 INSERT INTO animals (
 	id,
 	name,
@@ -168,3 +169,49 @@ INSERT INTO animals(
 	true,
 	17
 );
+
+--Populate Owners table
+INSERT INTO owners (full_name, age)
+VALUES ('Sam Smith', 34),
+       ('Jannifer Orwell', 19),
+       ('Bob', 45),
+       ('Melody Pond', 77),
+       ('Deam Winchester', 14),
+       ('Jodie Whittaker', 38);
+
+
+--Populate Species table
+INSERT INTO species (name)
+VALUES ('Pokemon'),
+       ('Digimon');
+
+
+--Update species_id in Animals Table
+UPDATE animals
+SET species_id = 2
+WHERE name LIKE '%mon%';
+
+UPDATE animals
+SET species_id = 1
+WHERE species_id IS NULL;
+
+--Update Owners_id in Animals Table
+UPDATE animals
+SET owner_id = 1
+WHERE name = 'Agumon';
+
+UPDATE animals
+SET owner_id = 2
+WHERE name = 'Gabumon' OR name = 'Pikachu';
+
+UPDATE animals
+SET owner_id = 3
+WHERE name = 'Devimon' OR name = 'Plantmon';
+
+UPDATE animals
+SET owner_id = 4
+WHERE name = 'Charmander' OR name = 'Squirtle' OR name = 'Blossom';
+
+UPDATE animals
+SET owner_id = 5
+WHERE name = 'Angemon' OR name = 'Boarmon';
