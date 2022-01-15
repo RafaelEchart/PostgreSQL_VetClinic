@@ -45,6 +45,19 @@ CREATE TABLE specializations (
             REFERENCES species(id)
 );
 
+-- Many to Many relationship between animals and vets, Visits Table
+CREATE TABLE visits (
+    vets_id INT,
+    animal_id INT,
+    visit_date DATE,
+    CONSTRAINT fk_vets
+        FOREIGN KEY(vets_id)
+            REFERENCES vets(id),
+     CONSTRAINT fk_animal
+        FOREIGN KEY(animal_id)
+            REFERENCES animals(id)
+);
+
 --Add a column species of type string to your animals table.
 ALTER TABLE animals ADD COLUMN species VARCHAR;
 
