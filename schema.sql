@@ -24,6 +24,40 @@ CREATE TABLE species (
     PRIMARY KEY(id)
 );
 
+-- Create Vets Table
+CREATE TABLE vets (
+    id INT GENERATED ALWAYS AS IDENTITY,
+    name VARCHAR(250),
+    age INT,
+    date_of_graduation DATE,
+    PRIMARY KEY (id)
+);
+
+-- Many to Many relationship between species and vets, Specializations table
+CREATE TABLE specializations (
+    vets_id INT,
+    species_id INT,
+    CONSTRAINT fk_vets
+        FOREIGN KEY(vets_id)
+            REFERENCES vets(id),
+     CONSTRAINT fk_species
+        FOREIGN KEY(species_id)
+            REFERENCES species(id)
+);
+
+-- Many to Many relationship between animals and vets, Visits Table
+CREATE TABLE visits (
+    vets_id INT,
+    animal_id INT,
+    visit_date DATE,
+    CONSTRAINT fk_vets
+        FOREIGN KEY(vets_id)
+            REFERENCES vets(id),
+     CONSTRAINT fk_animal
+        FOREIGN KEY(animal_id)
+            REFERENCES animals(id)
+);
+
 --Add a column species of type string to your animals table.
 ALTER TABLE animals ADD COLUMN species VARCHAR;
 
