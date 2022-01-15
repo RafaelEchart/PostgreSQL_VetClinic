@@ -24,6 +24,15 @@ CREATE TABLE species (
     PRIMARY KEY(id)
 );
 
+-- Create Vets Table
+CREATE TABLE vets (
+    id INT GENERATED ALWAYS AS IDENTITY,
+    name VARCHAR(250),
+    age INT,
+    date_of_graduation DATE,
+    PRIMARY KEY (id)
+);
+
 --Add a column species of type string to your animals table.
 ALTER TABLE animals ADD COLUMN species VARCHAR;
 
